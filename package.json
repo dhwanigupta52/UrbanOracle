@@ -1,6 +1,6 @@
 {
   "name": "urbanoracle",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {}
+  "private": true,
+  "type": "module"
 }
