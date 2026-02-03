@@ -7,15 +7,12 @@ export default async function handler(req, res) {
     const { frames } = req.body;
 
     const prompt = `
-You are a surveillance safety AI.
-Analyze these CCTV frames for signs of:
-- panic
-- violence
-- abnormal behavior
-Give a short safety report.
+You are a CCTV safety AI.
+Look at these frames and tell if there is panic, violence, or abnormal activity.
+Give a short report.
 `;
 
-    const response = await fetch("https://api.openai.com/v1/responses", {
+    const openaiRes = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,27 +25,43 @@ Give a short safety report.
             role: "user",
             content: [{ type: "text", text: prompt }]
           },
-          ...frames.map(img => ({
+          ...frames.slice(0, 10).map(img => ({
             role: "user",
             content: [
-              {
-                type: "input_image",
-                image_url: img
-              }
+              { type: "input_image", image_url: img }
             ]
           }))
         ]
       })
     });
 
-    const data = await response.json();
+    const data = await openaiRes.json();
 
-    // ✅ Correct way to read AI output
-    const analysis = data.output[0].content[0].text;
+    // 🔥 If OpenAI returns an error, show it
+    if (!openaiRes.ok) {
+      return res.status(500).json({
+        analysis: "OpenAI Error: " + JSON.stringify(data)
+      });
+    }
+
+    // ✅ Safely extract text
+    let analysis = "No analysis text returned.";
+
+    if (data.output && data.output.length > 0) {
+      for (const item of data.output) {
+        if (item.content) {
+          for (const c of item.content) {
+            if (c.text) {
+              analysis = c.text;
+            }
+          }
+        }
+      }
+    }
 
     res.status(200).json({ analysis });
 
   } catch (err) {
-    res.status(500).json({ analysis: err.message });
+    res.status(500).json({ analysis: "Server error: " + err.message });
   }
 }
