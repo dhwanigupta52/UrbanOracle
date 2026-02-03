@@ -23,7 +23,9 @@ Give a short report.
         input: [
           {
             role: "user",
-            content: [{ type: "text", text: prompt }]
+            content: [
+              { type: "input_text", text: prompt }   // ✅ FIXED HERE
+            ]
           },
           ...frames.slice(0, 10).map(img => ({
             role: "user",
@@ -37,23 +39,19 @@ Give a short report.
 
     const data = await openaiRes.json();
 
-    // 🔥 If OpenAI returns an error, show it
     if (!openaiRes.ok) {
       return res.status(500).json({
         analysis: "OpenAI Error: " + JSON.stringify(data)
       });
     }
 
-    // ✅ Safely extract text
     let analysis = "No analysis text returned.";
 
-    if (data.output && data.output.length > 0) {
-      for (const item of data.output) {
-        if (item.content) {
-          for (const c of item.content) {
-            if (c.text) {
-              analysis = c.text;
-            }
+    for (const item of data.output) {
+      if (item.content) {
+        for (const c of item.content) {
+          if (c.type === "output_text") {
+            analysis = c.text;
           }
         }
       }
