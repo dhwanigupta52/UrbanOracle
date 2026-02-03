@@ -8,7 +8,10 @@ export default async function handler(req, res) {
 
     const prompt = `
 You are a surveillance safety AI.
-Analyze these frames for signs of panic, violence, or abnormal behavior.
+Analyze these CCTV frames for signs of:
+- panic
+- violence
+- abnormal behavior
 Give a short safety report.
 `;
 
@@ -21,10 +24,18 @@ Give a short safety report.
       body: JSON.stringify({
         model: "gpt-4.1-mini",
         input: [
-          { role: "user", content: prompt },
+          {
+            role: "user",
+            content: [{ type: "text", text: prompt }]
+          },
           ...frames.map(img => ({
             role: "user",
-            content: [{ type: "input_image", image_url: img }]
+            content: [
+              {
+                type: "input_image",
+                image_url: img
+              }
+            ]
           }))
         ]
       })
@@ -32,9 +43,10 @@ Give a short safety report.
 
     const data = await response.json();
 
-    res.status(200).json({
-      analysis: data.output_text || "No analysis generated."
-    });
+    // ✅ Correct way to read AI output
+    const analysis = data.output[0].content[0].text;
+
+    res.status(200).json({ analysis });
 
   } catch (err) {
     res.status(500).json({ analysis: err.message });
