@@ -18,6 +18,9 @@
   "homepage": "https://github.com/dhwanigupta52/UrbanOracle#readme",
   "description": "",
   "dependencies": {
-    "formidable": "^3.5.4"
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "formidable": "^3.5.4",
+    "multer": "^2.0.2"
   }
 }
