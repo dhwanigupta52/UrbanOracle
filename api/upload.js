@@ -30,9 +30,13 @@ Give a short report.
           ...frames.slice(0, 10).map(img => ({
             role: "user",
             content: [
-              { type: "input_image", image_url: img }
+              {
+                type: "input_image",
+                image_base64: img   // ✅ THIS IS THE REAL FIX
+              }
             ]
           }))
+
         ]
       })
     });

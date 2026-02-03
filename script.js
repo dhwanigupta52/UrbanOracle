@@ -93,7 +93,8 @@ async function extractFrames(video, interval) {
         await new Promise(res => video.onseeked = res);
 
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        frames.push(canvas.toDataURL("image/jpeg"));
+        const base64 = canvas.toDataURL("image/jpeg").split(",")[1];
+        frames.push(base64);
     }
 
     return frames.slice(0, 25); // limit for API speed
