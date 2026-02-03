@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>UrbanOracle CCTV Prototype</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UrbanOracle Prototype</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <h1>UrbanOracle CCTV Prototype</h1>
+    <h1>UrbanOracle Prototype</h1>
 
-  <input type="file" id="videoFile" accept="video/*">
-  <button onclick="analyzeVideo()">Analyze Video</button>
+    <div class="upload-section">
+        <input type="file" id="videoInput" accept="video/*" />
+    </div>
 
-  <div id="statusBox">AI analysis will appear here...</div>
+    <div class="graph-section">
+        <h2>Amplitude Graph</h2>
+        <canvas id="graphCanvas" width="900" height="300"></canvas>
+    </div>
 
-  <script src="script.js"></script>
+    <div class="ai-section">
+        <h2>AI Analysis</h2>
+        <div id="aiResult">AI analysis will appear here...</div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
