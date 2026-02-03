@@ -1,20 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f4f4f4;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
 }
 
-canvas {
-    border: 2px solid black;
-    margin-top: 20px;
-}
-
-#aiResult {
-    margin-top: 20px;
-    padding: 15px;
-    background: white;
-    border: 1px solid #ccc;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+#result {
+  margin-top: 30px;
+  border: 1px solid black;
+  padding: 20px;
+  font-size: 18px;
 }

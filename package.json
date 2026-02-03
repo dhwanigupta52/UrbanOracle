@@ -1,0 +1,23 @@
+{
+  "name": "urbanoraclevercel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhwanigupta52/UrbanOracle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhwanigupta52/UrbanOracle/issues"
+  },
+  "homepage": "https://github.com/dhwanigupta52/UrbanOracle#readme",
+  "description": "",
+  "dependencies": {
+    "formidable": "^3.5.4"
+  }
+}

@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>UrbanOracle Prototype</title>
-    <link rel="stylesheet" href="style.css">
+  <title>UrbanOracle CCTV Prototype</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>UrbanOracle CCTV Prototype</h1>
+  <h1>UrbanOracle CCTV Prototype</h1>
 
-<input type="file" id="videoInput" accept="video/*" />
-<br><br>
+  <input type="file" id="videoInput" accept="video/*">
+  <button id="analyzeBtn">Analyze Video</button>
 
-<canvas id="graphCanvas" width="900" height="300"></canvas>
+  <div id="result">AI analysis will appear here...</div>
 
-<h2>AI Analysis</h2>
-<div id="result">AI analysis will appear here...</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
