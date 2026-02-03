@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>UrbanOracle Prototype</title>
-    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <h1>UrbanOracle Prototype</h1>
 
-    <div class="upload-section">
-        <input type="file" id="videoInput" accept="video/*" />
-    </div>
+    <input type="file" id="videoInput" accept="video/*" />
+    <br><br>
 
-    <div class="graph-section">
-        <h2>Amplitude Graph</h2>
-        <canvas id="graphCanvas" width="900" height="300"></canvas>
-    </div>
+    <video id="videoPlayer" width="600" controls></video>
 
-    <div class="ai-section">
-        <h2>AI Analysis</h2>
-        <div id="aiResult">AI analysis will appear here...</div>
-    </div>
+    <h3>Amplitude Graph</h3>
+    <canvas id="graphCanvas" width="900" height="250"></canvas>
+
+    <h3>AI Analysis</h3>
+    <div id="aiResult">AI analysis will appear here...</div>
 
     <script src="script.js"></script>
 </body>
