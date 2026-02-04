@@ -11,7 +11,10 @@ videoInput.addEventListener("change", async (e) => {
     if (!file) return;
 
     videoPlayer.src = URL.createObjectURL(file);
-    videoPlayer.load();
+    await new Promise(res => {
+        videoPlayer.onloadedmetadata = res;
+    });
+
 
     videoPlayer.onplay = () => startGraph();
     videoPlayer.onended = () => stopGraph();
@@ -80,22 +83,33 @@ function draw() {
 }
 
 async function extractFrames(video, interval) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const frames = [];
+    return new Promise((resolve) => {
+        const frames = [];
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-    canvas.width = 320;
-    canvas.height = 240;
+        canvas.width = 320;
+        canvas.height = 240;
 
-    for (let t = 0; t < video.duration; t += interval) {
-        video.currentTime = t;
+        video.addEventListener("loadedmetadata", async () => {
+            for (let t = 0; t < video.duration; t += interval) {
+                video.currentTime = t;
 
-        await new Promise(res => video.onseeked = res);
+                await new Promise(res => {
+                    video.onseeked = () => res();
+                });
 
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const base64 = canvas.toDataURL("image/jpeg").split(",")[1];
-        frames.push(base64);
-    }
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    return frames.slice(0, 25); // limit for API speed
+                const base64 = canvas
+                    .toDataURL("image/jpeg")
+                    .split(",")[1];
+
+                frames.push(base64);
+            }
+
+            resolve(frames);
+        });
+    });
 }
+
