@@ -106,8 +106,7 @@ async function extractFrames(file) {
                 await new Promise(r => tempVideo.onseeked = r);
 
                 ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
-                const base64 = canvas.toDataURL("image/jpeg").split(",")[1];
-                frames.push(base64);
+                frames.push(canvas.toDataURL("image/jpeg"));
 
                 if (frames.length >= 20) break;
             }

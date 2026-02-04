@@ -32,10 +32,11 @@ Give a short report.
             content: [
               {
                 type: "input_image",
-                image_base64: img   // ✅ THIS IS THE REAL FIX
+                image_url: img
               }
             ]
           }))
+
 
         ]
       })
