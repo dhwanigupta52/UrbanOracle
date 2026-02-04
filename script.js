@@ -10,19 +10,19 @@ videoInput.addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
+    aiResult.innerText = "Analyzing video with AI...";
+
     videoPlayer.src = URL.createObjectURL(file);
+    videoPlayer.load();
+
     await new Promise(res => {
         videoPlayer.onloadedmetadata = res;
     });
 
-
-    videoPlayer.onplay = () => startGraph();
-    videoPlayer.onended = () => stopGraph();
-
-    aiResult.innerText = "Analyzing video with AI...";
-
+    // Now metadata is ready
     const frames = await extractFrames(videoPlayer, 0.7);
 
+    // NOW the API call happens
     try {
         const res = await fetch("/api/upload", {
             method: "POST",
