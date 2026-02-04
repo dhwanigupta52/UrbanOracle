@@ -4,25 +4,29 @@ const canvas = document.getElementById("graphCanvas");
 const ctx = canvas.getContext("2d");
 const aiResult = document.getElementById("aiResult");
 
-let audioCtx, analyser, source, dataArray;
+let analyser, audioCtx, dataArray;
 
+// ===== VIDEO SELECTED =====
 videoInput.addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    aiResult.innerText = "Analyzing video with AI...";
+    aiResult.innerText = "Preparing video...";
 
     videoPlayer.src = URL.createObjectURL(file);
     videoPlayer.load();
 
-    await new Promise(res => {
-        videoPlayer.onloadedmetadata = res;
-    });
+    // Start graph when video plays
+    videoPlayer.onplay = startGraph;
 
-    // Now metadata is ready
-    const frames = await extractFrames(videoPlayer, 0.7);
+    // Wait for metadata ONLY for frame extraction
+    await new Promise(res => videoPlayer.onloadedmetadata = res);
 
-    // NOW the API call happens
+    // Extract frames in background (does not block graph)
+    const frames = await extractFrames(file);
+
+    aiResult.innerText = "Analyzing video with AI...";
+
     try {
         const res = await fetch("/api/upload", {
             method: "POST",
@@ -32,14 +36,18 @@ videoInput.addEventListener("change", async (e) => {
 
         const data = await res.json();
         aiResult.innerText = data.analysis;
+
     } catch (err) {
         aiResult.innerText = "Error connecting to AI server!";
     }
 });
 
+
+// ===== AMPLITUDE GRAPH (LIVE AUDIO) =====
 function startGraph() {
     audioCtx = new AudioContext();
-    source = audioCtx.createMediaElementSource(videoPlayer);
+    const source = audioCtx.createMediaElementSource(videoPlayer);
+
     analyser = audioCtx.createAnalyser();
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
@@ -47,69 +55,64 @@ function startGraph() {
     analyser.fftSize = 2048;
     dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    draw();
+    drawGraph();
 }
 
-function stopGraph() {
-    audioCtx.close();
-}
+function drawGraph() {
+    requestAnimationFrame(drawGraph);
 
-function draw() {
-    requestAnimationFrame(draw);
     analyser.getByteTimeDomainData(dataArray);
 
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const sliceWidth = canvas.width / dataArray.length;
-    let x = 0;
-
     ctx.beginPath();
+    let x = 0;
+    const slice = canvas.width / dataArray.length;
 
     for (let i = 0; i < dataArray.length; i++) {
         const v = dataArray[i] / 128.0;
         const y = (v * canvas.height) / 2;
 
-        if (v > 1.2 || v < 0.8) ctx.strokeStyle = "red";
-        else ctx.strokeStyle = "lime";
+        ctx.strokeStyle = (v > 1.2 || v < 0.8) ? "red" : "lime";
 
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
 
-        x += sliceWidth;
+        x += slice;
     }
 
     ctx.stroke();
 }
 
-async function extractFrames(video, interval) {
+
+// ===== FRAME EXTRACTION (SEPARATE VIDEO ELEMENT) =====
+async function extractFrames(file) {
     return new Promise((resolve) => {
-        const frames = [];
+        const tempVideo = document.createElement("video");
+        tempVideo.src = URL.createObjectURL(file);
+
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
+        const frames = [];
 
-        canvas.width = 320;
-        canvas.height = 240;
+        tempVideo.onloadedmetadata = async () => {
+            canvas.width = 320;
+            canvas.height = 240;
 
-        video.addEventListener("loadedmetadata", async () => {
-            for (let t = 0; t < video.duration; t += interval) {
-                video.currentTime = t;
+            for (let t = 0; t < tempVideo.duration; t += 0.7) {
+                tempVideo.currentTime = t;
 
-                await new Promise(res => {
-                    video.onseeked = () => res();
-                });
+                await new Promise(r => tempVideo.onseeked = r);
 
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-                const base64 = canvas
-                    .toDataURL("image/jpeg")
-                    .split(",")[1];
-
+                ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+                const base64 = canvas.toDataURL("image/jpeg").split(",")[1];
                 frames.push(base64);
+
+                if (frames.length >= 20) break;
             }
 
             resolve(frames);
-        });
+        };
     });
 }
-
