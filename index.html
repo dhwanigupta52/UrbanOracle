@@ -2,22 +2,127 @@
 <html>
 <head>
     <title>UrbanOracle Prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-    <h1>UrbanOracle Prototype</h1>
+    <!-- ================= NAVBAR ================= -->
+    <nav>
+        <img src="logo.png" alt="UrbanOracle Logo" height="40">
+        <a href="#prototype">Prototype</a>
+        <a href="#presentation">Presentation</a>
+        <a href="#about">About</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#data">Impact Data</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#video">AI Video</a>
+    </nav>
 
-    <input type="file" id="videoInput" accept="video/*" />
-    <br><br>
+    <h1>UrbanOracle – Intelligent Early Emergency Detection System</h1>
 
-    <video id="videoPlayer" width="600" controls></video>
+    <!-- ================= PROTOTYPE ================= -->
+    <section id="prototype">
+        <h2>Live Prototype</h2>
 
-    <h3>Amplitude Graph</h3>
-    <canvas id="graphCanvas" width="900" height="250"></canvas>
+        <input type="file" id="videoInput" accept="video/*" />
+        <br><br>
 
-    <h3>AI Analysis</h3>
-    <div id="aiResult">AI analysis will appear here...</div>
+        <video id="videoPlayer" width="600" controls></video>
+
+        <h3>Amplitude Graph</h3>
+        <canvas id="graphCanvas" width="900" height="250"></canvas>
+
+        <h3>AI Analysis</h3>
+        <div id="aiResult">AI analysis will appear here...</div>
+    </section>
+
+    <!-- ================= PRESENTATION ================= -->
+    <section id="presentation">
+        <h2>Project Presentation</h2>
+        <!-- Paste Canva iframe here -->
+        <iframe width="100%" height="500"></iframe>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+        <h2>About UrbanOracle</h2>
+        <p>
+            UrbanOracle is an AI-powered early emergency detection system designed to reduce
+            the impact of delayed reporting in medical emergencies, fires, public violence,
+            kidnapping cases, and infrastructure failures. It analyzes short video and audio
+            clips to detect abnormal patterns and automatically recommends the correct
+            emergency response teams along with a threat level assessment.
+        </p>
+    </section>
+
+    <!-- ================= WORKFLOW ================= -->
+    <section id="workflow">
+        <h2>System Workflow</h2>
+        <!-- Paste Canva workflow iframe here -->
+        <iframe width="100%" height="500"></iframe>
+    </section>
+
+    <!-- ================= IMPACT DATA ================= -->
+    <section id="data">
+        <h2>Illustrative Impact Trends</h2>
+        <table border="1">
+            <tr>
+                <th>Incident Type</th>
+                <th>Impact</th>
+            </tr>
+            <tr><td>Medical emergencies</td><td>~35% worse outcomes</td></tr>
+            <tr><td>Fire incidents</td><td>~45% higher damage</td></tr>
+            <tr><td>Public violence / attacks</td><td>~30% escalation</td></tr>
+            <tr><td>Kidnapping / missing cases</td><td>~40% drop in recovery success</td></tr>
+            <tr><td>Infrastructure failures</td><td>~25% higher losses</td></tr>
+        </table>
+
+        <h3>Response Time & Delay Data (Delhi)</h3>
+        <table border="1">
+            <tr>
+                <th>Metric</th>
+                <th>Data</th>
+            </tr>
+            <tr><td>Avg ambulance response (2025)</td><td>~17.4 minutes</td></tr>
+            <tr><td>Police response</td><td>~8–18 minutes</td></tr>
+            <tr><td>Helpline 112 outage delay</td><td>Up to ~30 minutes</td></tr>
+            <tr><td>Daily deaths due to delayed care</td><td>~24,000</td></tr>
+        </table>
+    </section>
+
+    <!-- ================= CASE STUDIES ================= -->
+    <section id="cases">
+        <h2>Detailed Case Studies</h2>
+
+        <h3>Case Study 1: Dwarka Apartment Fire (10 June 2025)</h3>
+        <p>
+            Fire noticed at 9:40 AM, emergency call at 10:01 AM. Flammable PVC panels,
+            smoke-blocked exits, and delayed response led to three fatalities after victims
+            jumped from the 10th floor. No automated early alert system was present.
+        </p>
+
+        <h3>Case Study 2: Kidnapping – Laxmi Nagar (14 March 2024)</h3>
+        <p>
+            Missing child reported after 28 hours. CCTV overwritten. Recovery took 3 days.
+            Early automated alert could have preserved the critical first 24-hour window.
+        </p>
+
+        <h3>Case Study 3: Connaught Place High-Rise Fire (12 Nov 2023)</h3>
+        <p>
+            Fire started at 8:15 PM, reported at 8:40 PM. No detectors, blocked exits.
+            Injuries due to smoke inhalation. Property damage limited but preventable.
+        </p>
+    </section>
+
+    <!-- ================= AI VIDEO ================= -->
+    <section id="video">
+        <h2>UrbanOracle AI Demonstration</h2>
+        <video width="700" controls>
+            <source src="urbanoracle_ai_video.mp4" type="video/mp4">
+        </video>
+    </section>
 
     <script src="script.js"></script>
+
 </body>
 </html>
