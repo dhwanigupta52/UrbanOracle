@@ -1,12 +1,147 @@
-body {
-  font-family: Arial;
-  text-align: center;
-  margin-top: 50px;
+/* ====== GLOBAL ====== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-#statusBox {
-  margin-top: 30px;
-  padding: 20px;
-  border: 2px solid black;
-  font-size: 20px;
+body{
+    background-image: url('bg.png'); /* your repeating bg */
+    background-repeat: repeat;
+    background-attachment: fixed;
+    color:#ffffff;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 30px;
+    background: rgba(0,31,63,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom:2px solid #ffc300;
+}
+
+/* Logo circle */
+nav img{
+    height:52px;
+    width:52px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #ffc300;
+}
+
+/* Links */
+nav a{
+    color:#ffc300;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#d8a7b1;
+}
+
+/* ===== SECTIONS (GLASS CARDS) ===== */
+section{
+    width:90%;
+    margin:70px auto;
+    padding:45px;
+    border-radius:20px;
+    backdrop-filter: blur(18px);
+    background: rgba(0,31,63,0.75);
+    border:1px solid #ffc30055;
+    box-shadow: 0 0 35px #00000066;
+}
+
+/* ===== HEADINGS ===== */
+h1{
+    text-align:center;
+    font-size:40px;
+    color:#ffc300;
+    margin:40px 0;
+}
+
+h2{
+    color:#d8a7b1;
+    margin-bottom:20px;
+}
+
+h3{
+    color:#9b8fc7;
+    margin:20px 0 10px;
+}
+
+/* ===== TABLES ===== */
+table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top:15px;
+}
+
+th, td{
+    border:1px solid #ffc30055;
+    padding:10px;
+}
+
+th{
+    background:#001f3f;
+    color:#ffc300;
+}
+
+/* ===== PROTOTYPE ELEMENTS ===== */
+#videoPlayer,
+canvas,
+#aiResult,
+video,
+iframe{
+    width:100%;
+    border-radius:14px;
+    margin-top:15px;
+}
+
+/* ===== PAPER PROTOTYPE IMAGE ===== */
+#paper img{
+    width:100%;
+    border-radius:14px;
+    margin-top:20px;
+    border:2px solid #ffc300;
+}
+
+/* ===== TOGGLE BUTTON ===== */
+#menuToggle{
+    display:none;
+    position:fixed;
+    top:15px;
+    right:20px;
+    font-size:26px;
+    background:none;
+    color:#ffc300;
+    border:none;
+    z-index:2000;
+}
+
+@media(max-width:900px){
+    #menuToggle{
+        display:block;
+    }
+    nav{
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    nav.open{
+        display:flex;
+    }
+    nav a{
+        margin:10px 0;
+    }
 }
