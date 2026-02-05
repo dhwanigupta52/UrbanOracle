@@ -15,6 +15,20 @@ body{
     color:#ffffff;
 }
 
+#menuToggle{
+    display:none;
+    position:fixed;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    background:none;
+    color:#ffc300;
+    border:none;
+    z-index:2000;
+    cursor:pointer;
+}
+
+
 /* ===== NAVBAR ===== */
 nav{
     position:sticky;
@@ -42,9 +56,10 @@ nav img{
 nav a{
     color:#ffc300;
     text-decoration:none;
-    margin-left:20px;
+    margin-left:22px;
     font-weight:600;
     transition:0.3s;
+    font-size:15px;
 }
 
 nav a:hover{
@@ -62,6 +77,38 @@ section{
     border:1px solid #ffc30055;
     box-shadow: 0 0 35px #00000066;
 }
+
+.main-title{
+    text-align:center;
+    font-size:48px;
+    font-weight:800;
+    color:#ffc300;
+    letter-spacing:2px;
+    text-shadow: 
+        0 0 10px #ffc300,
+        0 0 25px #ffc30088,
+        0 0 45px #ffc30055;
+    margin-top:40px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:20px;
+    margin-top:15px;
+    color:#d8a7b1;
+    text-shadow: 0 0 8px #d8a7b188;
+}
+
+/* ===== CREDITS ===== */
+
+.credits{
+    text-align:center;
+    margin-top:18px;
+    font-size:14px;
+    color:#9b8fc7;
+    line-height:1.6;
+}
+
 
 /* ===== HEADINGS ===== */
 h1{
@@ -131,18 +178,28 @@ iframe{
 }
 
 @media(max-width:900px){
+
     #menuToggle{
         display:block;
     }
+
     nav{
         display:none;
         flex-direction:column;
         align-items:flex-start;
+        padding:20px;
     }
+
     nav.open{
         display:flex;
     }
+
     nav a{
-        margin:10px 0;
+        margin:12px 0;
+        font-size:18px;
+    }
+
+    .main-title{
+        font-size:34px;
     }
 }

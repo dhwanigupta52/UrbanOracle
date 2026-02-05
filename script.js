@@ -115,3 +115,9 @@ async function extractFrames(file) {
         };
     });
 }
+const toggle = document.getElementById('menuToggle');
+const nav = document.querySelector('nav');
+
+toggle.onclick = () => {
+    nav.classList.toggle('open');
+};
