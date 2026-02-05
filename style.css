@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url('bg.png'); /* your repeating bg */
+    background-image: url('bg.gif'); /* your repeating bg */
     background-repeat: repeat;
     background-attachment: fixed;
     color:#ffffff;
