@@ -7,7 +7,8 @@
     { "src": "*.css", "use": "@vercel/static" },
     { "src": "*.png", "use": "@vercel/static" },
     { "src": "*.jpg", "use": "@vercel/static" },
-    { "src": "*.mp4", "use": "@vercel/static" }
+    { "src": "*.mp4", "use": "@vercel/static" },
+    { "src": "*.gif", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/upload", "dest": "api/upload.js" },
