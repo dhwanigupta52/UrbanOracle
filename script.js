@@ -115,9 +115,10 @@ async function extractFrames(file) {
         };
     });
 }
-const toggle = document.getElementById('menuToggle');
-const nav = document.querySelector('nav');
 
-toggle.onclick = () => {
-    nav.classList.toggle('open');
-};
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+});

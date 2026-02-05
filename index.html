@@ -8,17 +8,27 @@
 <body>
 
     <!-- ================= NAVBAR ================= -->
-    <nav>
-        <img src="logo.png" alt="UrbanOracle Logo" height="40">
-        <a href="#prototype">Prototype</a>
-        <a href="#presentation">Presentation</a>
-        <a href="#about">About</a>
-        <a href="#paper">Paper Prototype</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#data">Impact Data</a>
-        <a href="#cases">Case Studies</a>
-        <a href="#video">AI Video</a>
-    </nav>
+    <nav class="navbar">
+    <div class="nav-container">
+
+        <img src="logo.png" class="nav-logo" />
+
+        <div class="menu-toggle" id="menuToggle">
+            &#9776;
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#prototype">Prototype</a></li>
+            <li><a href="#presentation">Presentation</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#paper">Paper Prototype</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#data">Impact Data</a></li>
+            <li><a href="#cases">Case Studies</a></li>
+            <li><a href="#video">AI Video</a></li>
+        </ul>
+    </div></nav>
+
 
     <div class="hero-panel">
     <div class="main-title">UrbanOracle — Intelligent Early Emergency Detection System</div>
@@ -159,7 +169,6 @@ By combining amplitude analysis (loudness), frequency analysis (pitch), motion p
     </section>
 
     <script src="script.js"></script>
-    <button id="menuToggle">&#9776;</button>
 
 </body>
 </html>

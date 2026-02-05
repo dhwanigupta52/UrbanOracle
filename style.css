@@ -15,19 +15,6 @@ body{
     color:#ffffff;
 }
 
-#menuToggle{
-    display:none;
-    position:fixed;
-    top:15px;
-    right:20px;
-    font-size:30px;
-    background:none;
-    color:#ffc300;
-    border:none;
-    z-index:2000;
-    cursor:pointer;
-}
-
 
 /* ===== NAVBAR ===== */
 nav{
@@ -52,19 +39,6 @@ nav img{
     border:3px solid #ffc300;
 }
 
-/* Links */
-nav a{
-    color:#ffc300;
-    text-decoration:none;
-    margin-left:22px;
-    font-weight:600;
-    transition:0.3s;
-    font-size:15px;
-}
-
-nav a:hover{
-    color:#d8a7b1;
-}
 
 /* ===== SECTIONS (GLASS CARDS) ===== */
 section{
@@ -111,12 +85,6 @@ section{
 
 
 /* ===== HEADINGS ===== */
-h1{
-    text-align:center;
-    font-size:40px;
-    color:#ffc300;
-    margin:40px 0;
-}
 
 h2{
     color:#d8a7b1;
@@ -165,33 +133,11 @@ iframe{
 }
 
 /* ===== TOGGLE BUTTON ===== */
-#menuToggle{
-    display:none;
-    position:fixed;
-    top:15px;
-    right:20px;
-    font-size:26px;
-    background:none;
-    color:#ffc300;
-    border:none;
-    z-index:2000;
-}
 
 @media(max-width:900px){
 
     #menuToggle{
         display:block;
-    }
-
-    nav{
-        display:none;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:20px;
-    }
-
-    nav.open{
-        display:flex;
     }
 
     nav a{
@@ -300,4 +246,76 @@ section a:hover{
 .navbar a:hover{
     background:rgba(255,195,0,0.15);
     box-shadow:0 0 10px #ffc30055;
+}
+/* ===== STICKY NAVBAR ===== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    width:100%;
+    z-index:9999;
+    background:rgba(0,31,63,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:2px solid #ffc300;
+}
+
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-logo{
+    height:55px;
+    border-radius:50%;
+}
+
+/* ===== NAV LINKS ===== */
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:22px;
+}
+
+.nav-links li a{
+    color:#ffc300;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* ===== TOGGLE BUTTON (hidden on PC) ===== */
+
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    color:#ffc300;
+    cursor:pointer;
+}
+
+/* ===== MOBILE VIEW ===== */
+
+@media(max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:75px;
+        right:0;
+        width:100%;
+        background:rgba(0,31,63,0.95);
+        flex-direction:column;
+        text-align:center;
+        display:none;
+        padding:20px 0;
+        gap:18px;
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
 }
