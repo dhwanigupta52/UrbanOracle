@@ -10,6 +10,7 @@
 body{
     background-image: url('bggif.gif'); /* your repeating bg */
     background-repeat: repeat;
+    background-size: 192px 108px;
     background-attachment: fixed;
     color:#ffffff;
 }
