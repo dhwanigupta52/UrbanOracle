@@ -47,13 +47,13 @@ False Alarm → Completely normal
 Mistaken Alarm → Looks unusual but harmless
 Low → Minor issue, self-resolvable, no authorities needed
 Medium → Clear danger to a person, requires response
-High → Severe danger to many people
+High → Severe danger to many people, stampede, mass violence or man caused disaster
 
 Report To:
 Police, Ambulance, Disaster Management, None
 
 Reasoning:
-(why this does NOT require escalation unless truly serious)
+(why this does or does NOT require escalation unless truly serious.)
 
 Remember:
 Your job is to PREVENT unnecessary emergency responses.
