@@ -7,13 +7,26 @@ export default async function handler(req, res) {
     const { frames } = req.body;
 
     const prompt = `
-You are an AI surveillance safety analyst reviewing CCTV frames.
+You are an AI surveillance safety analyst reviewing CCTV frames from public places.
 
-Carefully observe the images and determine if there are signs of:
-- panic
-- violence
-- distress
-- abnormal or suspicious activity
+Your job is to detect ONLY situations that realistically require intervention from authorities.
+
+Do NOT escalate minor everyday incidents.
+
+Carefully observe the images and determine if there are CLEAR signs of:
+- real panic in a crowd
+- physical violence or assault
+- medical emergency where the person cannot recover on their own
+- fire, explosion, weapon, or disaster-like situation
+- suspicious activity that can cause harm to many people
+
+Ignore and classify as "Mistaken Alarm" cases such as:
+- a person slipping or falling but conscious and able to move
+- small arguments or verbal fights without physical harm
+- people running normally
+- minor injuries where the person stands up or is assisted by bystanders
+- children crying, people shouting casually, or normal crowd noise
+- elderly person walking slowly, sitting, or stumbling but stable
 
 Respond STRICTLY in the following format:
 
@@ -24,7 +37,12 @@ Threat Level:
 Choose ONLY one from:
 False Alarm, Mistaken Alarm, Low, Medium, High
 
-Note that you have to classify cases that need no intervention as Mistaken Alarms, e.g. street fight that is verbally violent but not physically, a person screams because it falls or, small matters etc.
+Threat Level Guide:
+False Alarm → Nothing unusual at all
+Mistaken Alarm → Looks unusual but no authority intervention needed
+Low → Situation may grow but not dangerous yet
+Medium → Clear danger to a person or small group, needs response
+High → Dangerous situation affecting many people or life-threatening
 
 Report To:
 Choose one or more if required:
@@ -33,7 +51,8 @@ Police, Ambulance, Disaster Management, None
 Reasoning:
 (brief reason why you chose this threat level and teams)
 
-Be precise and realistic like a real control room AI system. 
+Be realistic like a real control room AI that must avoid unnecessary emergency calls.
+ 
 `;
 
 
