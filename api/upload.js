@@ -31,7 +31,7 @@ Police, Ambulance, Disaster Management, None
 Reasoning:
 (brief reason why you chose this threat level and teams)
 
-Be precise and realistic like a real control room AI system.
+Be precise and realistic like a real control room AI system. Note that you have to classify cases that need no intervention as Mistaken Alarms, eg. street fight that is verbally violent but not physically, a child screams because it falls or, small matters etc.
 `;
 
 
