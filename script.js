@@ -100,7 +100,7 @@ async function extractFrames(file) {
             canvas.width = 320;
             canvas.height = 240;
 
-            for (let t = 0; t < tempVideo.duration; t += 0.4) {
+            for (let t = 0; t < tempVideo.duration; t += 0.2) {
                 tempVideo.currentTime = t;
 
                 await new Promise(r => tempVideo.onseeked = r);
@@ -108,7 +108,7 @@ async function extractFrames(file) {
                 ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
                 frames.push(canvas.toDataURL("image/jpeg"));
 
-                if (frames.length >= 50) break;
+                if (frames.length >= 100) break;
             }
 
             resolve(frames);
