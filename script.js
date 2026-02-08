@@ -108,7 +108,7 @@ async function extractFrames(file) {
                 ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
                 frames.push(canvas.toDataURL("image/jpeg"));
 
-                if (frames.length >= 20) break;
+                if (frames.length >= 50) break;
             }
 
             resolve(frames);
