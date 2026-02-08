@@ -97,8 +97,8 @@ async function extractFrames(file) {
         const frames = [];
 
         tempVideo.onloadedmetadata = async () => {
-            canvas.width = 320;
-            canvas.height = 240;
+            canvas.width = 500;
+            canvas.height = 500;
 
             for (let t = 0; t < tempVideo.duration; t += 0.2) {
                 tempVideo.currentTime = t;
