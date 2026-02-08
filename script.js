@@ -100,7 +100,7 @@ async function extractFrames(file) {
             canvas.width = 320;
             canvas.height = 240;
 
-            for (let t = 0; t < tempVideo.duration; t += 0.7) {
+            for (let t = 0; t < tempVideo.duration; t += 0.4) {
                 tempVideo.currentTime = t;
 
                 await new Promise(r => tempVideo.onseeked = r);
