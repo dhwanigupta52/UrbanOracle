@@ -47,7 +47,7 @@ False Alarm → Completely normal
 Mistaken Alarm → Looks unusual but harmless
 Low → Minor issue, self-resolvable, no authorities needed
 Medium → Clear danger to a person, requires response, possibility of life-threatening situation seen (predicted or anticipated) 
-High → Severe danger to many people, stampede, mass violence or man caused disaster
+High → Severe danger to many people, stampede, mass violence or man caused disaster, multiple people in panic even if there's no injuries, a crowd in panic is a high level threat
 
 Report To:
 Police, Ambulance, Disaster Management, None
